@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Продаж ПЗ — Офіційний сайт</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Навігація -->
+    <header>
+        <nav class="container">
+            <div class="logo">MySoftware</div>
+            <ul class="nav-links">
+                <li><a href="#about">Про програму</a></li>
+                <li><a href="#features">Можливості</a></li>
+                <li><a href="#pricing">Магазин додатків</a></li>
+            </ul>
+
+            <!-- Кнопки для гостей -->
+            <div id="authButtons" class="auth-buttons">
+                <button id="loginBtn" class="btn btn-outline">Вхід</button>
+                <button id="registerBtn" class="btn btn-primary">Реєстрація</button>
+            </div>
+
+            <!-- Блок профілю авторизованого користувача -->
+            <div id="userProfile" class="user-profile hidden">
+                <img id="userAvatar" src="https://via.placeholder.com/40" alt="Аватар" class="nav-avatar">
+                <span id="userName" class="nav-username">Користувач</span>
+                <button id="profileBtn" class="btn btn-outline btn-sm">Кабінет</button>
+                <button id="logoutBtn" class="btn btn-outline btn-sm">Вийти</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 1. Секція "Про програму" -->
+    <section id="about" class="hero container">
+        <div class="hero-text">
+            <h1>Автоматизуйте розв'язання графів методом Мінті</h1>
+            <p>Зручний інструмент для швидкого пошуку найкоротших шляхів у графах, з підтримкою експорту та імпорту даних у файл. Забудьте про ручні розрахунки!</p>
+            <a href="#pricing" class="btn btn-primary btn-large">Придбати зараз</a>
+        </div>
+    </section>
+
+    <!-- 2. Секція "Можливості" -->
+    <section id="features" class="container" style="padding: 60px 20px;">
+        <h2 class="section-title">Можливості та переваги</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>🚀 Алгоритм Мінті</h3>
+                <p>Моментальний пошук найкоротших шляхів від початкової вершини до всіх інших точок графа.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⌨️ Гнучке введення даних</h3>
+                <p>Вводьте ребра, дуги та ваги (вартість переміщення) вручну через зручний інтерфейс, або завантажуйте готові файли.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📂 Робота з файлами</h3>
+                <p>Швидкий імпорт структури графа з `.txt` файлів, та збереження підсумкових результатів розрахунку у текстовий формат.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🎯 Точність та наочність</h3>
+                <p>Деталізований вивід підсумкових маршрутів і вартості шляхів, без ризику допустити арифметичну помилку.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секція магазину додатків -->
+    <section id="pricing" class="pricing-section container">
+        <h2 class="section-title">Наші програми</h2>
+        <div id="productsGrid" class="products-grid">
+            
+            <!-- Приклад картки товару 1 -->
+            <div class="product-card">
+                <h3>Minty Graph Solver</h3>
+                <p class="product-desc">Ідеально підходить студентам для перевірки лабораторних робіт.</p>
+                <div class="product-price">49 ₴</div>
+                    <button class="btn btn-primary buy-btn" 
+                    data-app-id="app_minty_solver" 
+                    data-app-name="Minty Graph Solver" 
+                    data-price="49"
+                    data-version="v0.4"
+                    data-file-url="downloads/MGS-setupv0.4.zip">
+                Придбати
+            </button>
+            </div>
+
+            <div class="product-card">
+                <h3>Ford-Fulkerson Flow Solver</h3>
+                <p class="product-desc">Ідеально підходить студентам для перевірки лабораторних робіт.</p>
+                <div class="product-price">49 ₴</div>
+                    <button class="btn btn-primary buy-btn" 
+                    data-app-id="app_ford_fulkerson_solver" 
+                    data-app-name="Ford-Fulkerson Flow Solver" 
+                    data-price="49"
+                    data-version="v0.6"
+                    data-file-url="downloads/FFFS-setupv0.6.zip">
+                    Придбати
+                </button>
+            </div>
+
+            <div class="product-card">
+                <h3>Ultimate Flow Solver</h3>
+                <p class="product-desc">Ідеально підходить студентам для перевірки лабораторних робіт.</p>
+                <div class="product-price">79 ₴</div>
+                    <button class="btn btn-primary buy-btn" 
+                    data-app-id="app_ultimate_flow_solver" 
+                    data-app-name="Ultimate Flow Solver" 
+                    data-price="79"
+                    data-version="v0.7"
+                    data-file-url="downloads/UFS-setupv0.7.zip">
+                    Придбати
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Прихований input для завантаження файлу аватарки -->
+    <input type="file" id="avatarInput" accept="image/*" class="hidden">
+
+    <!-- Модальне вікно Особистого Кабінету -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content profile-modal">
+            <span class="close-btn" id="closeProfileModal">&times;</span>
+            <h2>Особистий кабінет</h2>
+            
+            <div class="profile-header-info">
+                <!-- Контейнер для строгого обмеження зони кліку аватарки -->
+                <div class="modal-avatar-wrapper" title="Натисніть, щоб змінити аватар">
+                    <img id="modalUserAvatar" src="https://via.placeholder.com/80" alt="Аватар" class="modal-avatar">
+                </div>
+                <div class="avatar-hover-hint">Нажміть, щоб змінити аватар</div>
+
+                <!-- Блок з ім'ям -->
+                <h3 id="modalUserName" class="modal-username" title="Натисніть, щоб змінити ім'я"></h3>
+                <p id="modalUserEmail" class="modal-email">user@example.com</p>
+            </div>
+
+            <hr class="modal-divider">
+
+            <h3>Мої придбані додатки</h3>
+            <div id="purchasedAppsList" class="purchased-apps" style="margin-top: 15px;">
+                <p class="empty-apps-text">У вас поки немає придбаних програм.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальне вікно Підтвердження Купівлі -->
+    <div id="buyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeBuyModal">&times;</span>
+            <h2>Оформлення замовлення</h2>
+            <p class="buy-info">Ви купуєте: <strong id="buyAppName">Назва додатку</strong></p>
+            <p class="buy-info">Сума до сплати: <strong id="buyAppPrice">0</strong> ₴</p>
+            
+            <div class="modal-actions">
+                <button id="confirmPurchaseBtn" class="btn btn-primary btn-full">Підтвердити покупку</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальне вікно Авторизації / Реєстрації -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            
+            <div class="social-auth-block">
+                <a href="/api/auth/google" class="btn btn-outline google-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.1c-.22-.66-.35-1.36-.35-2.1s.13-1.44.35-2.1V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                    </svg>
+                    Увійти через Google
+                </a>
+            </div>
+
+            <div class="divider-text">або</div>
+
+            <!-- Форма входу -->
+            <form id="loginForm" class="auth-form">
+                <h2>Вхід у кабінет</h2>
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Пароль" required>
+                <button type="submit" class="btn btn-primary">Увійти</button>
+            </form>
+
+            <!-- Форма реєстрації: КРОК 1 -->
+            <form id="registerForm" class="auth-form hidden">
+                <h2>Реєстрація</h2>
+                
+                <div class="input-group">
+                    <input type="text" id="regUsername" placeholder="Ваше ім'я" required>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" id="regEmail" placeholder="Email" required>
+                    <small id="emailError" class="error-text"></small>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="regPassword" placeholder="Пароль" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Отримати код</button>
+            </form>
+
+            <!-- Форма реєстрації: КРОК 2 -->
+            <form id="verifyForm" class="auth-form hidden">
+                <h2>Підтвердження email</h2>
+                <p class="verify-text">
+                    Введіть 6-значний код, надісланий на вашу пошту
+                </p>
+                <input 
+                    type="text" 
+                    id="verifyCode" 
+                    placeholder="6-значний код" 
+                    maxlength="6" 
+                    pattern="\d{6}" 
+                    class="code-input" 
+                    required
+                >
+                <button type="submit" class="btn btn-primary">Підтвердити</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
