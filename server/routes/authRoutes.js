@@ -32,7 +32,8 @@ router.get('/google/callback',
     const email = encodeURIComponent(req.user.email || req.user.emails?.[0]?.value || '');
     const avatar = encodeURIComponent(req.user.avatar || req.user.photos?.[0]?.value || '');
 
-    res.redirect(`http://localhost:5000/?token=${token}&name=${name}&email=${email}&avatar=${avatar}`);
+    const frontendUrl = process.env.BASE_URL || 'http://localhost:5000';
+    res.redirect(`${frontendUrl}/?token=${token}&name=${name}&email=${email}&avatar=${avatar}`);
   }
 );
 
