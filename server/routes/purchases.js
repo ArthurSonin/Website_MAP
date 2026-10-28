@@ -110,9 +110,9 @@ router.get('/check-status/:purchaseId', authenticateToken, async (req, res) => {
 
         const now = Math.floor(Date.now() / 1000);
 
-        if (now - lastFetchTime > 60 || cachedTransactions.length === 0) {
+        if (now - lastFetchTime > 15 || cachedTransactions.length === 0) {
             try {
-                const dayAgo = now - 86400;
+                const dayAgo = now - 3600;
 
                 const monoRes = await axios.get(
                     `https://api.monobank.ua/personal/statement/${process.env.MONO_JAR_ID}/${dayAgo}`,
