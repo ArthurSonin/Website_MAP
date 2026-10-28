@@ -1,4 +1,6 @@
-const API_BASE = '/api/auth';
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000/api/auth'
+  : 'https://website-map.onrender.com/api/auth';
 
 const API = {
   async login(email, password) {
